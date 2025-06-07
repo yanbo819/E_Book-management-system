@@ -12,7 +12,7 @@
     <section id="register-page">
         <div class="form-container">
             <div class="form-header">
-                <h2>Join E-Book Store</h2>
+                <h2>Join yanbo E-Book Store</h2>
             </div>
             <div class="form-body">
                 <% String message = (String) request.getAttribute("message");

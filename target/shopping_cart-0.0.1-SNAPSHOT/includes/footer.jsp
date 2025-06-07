@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <h5>About E-Book</h5>
+                <h5>About yanbo E-Book</h5>
                 <p>Your premier destination for digital reading. Discover thousands of books across all genres at competitive prices.</p>
             </div>
             <div class="col-md-2 mb-4">
@@ -29,7 +29,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2023 E-Book Store. All rights reserved.</p>
+            <p>&copy; 2025 yanbo E-Book Store. All rights reserved.</p>
         </div>
     </div>
 </footer>
@@ -51,15 +51,13 @@
         });
     });
     
-    // Quantity control functionality for cart
     document.querySelectorAll('.btn-incre').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
             const input = button.parentElement.querySelector('.form-control');
             let quantity = parseInt(input.value);
             input.value = quantity + 1;
-            // You would typically send an AJAX request here to update the quantity in the session/database
-            // window.location.href = 'quantity-inc-dec?action=inc&id=' + button.dataset.productId;
+       
         });
     });
     
