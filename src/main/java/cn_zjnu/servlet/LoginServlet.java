@@ -13,7 +13,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession; // Import HttpSession
+import jakarta.servlet.http.HttpSession; 
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
@@ -30,8 +30,7 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		// Removed unused PrintWriter 'out'
-
+		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -46,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			User user = udao.userLogin(email, password);
 
 			if (user != null) {
-				HttpSession session = request.getSession(); // Get session
+				HttpSession session = request.getSession();
 				session.setAttribute("auth", user);
 				LOGGER.log(Level.INFO, "User logged in: {0}", user.getEmail());
 				response.sendRedirect("./");

@@ -20,8 +20,7 @@ public class CancelOrderServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Actions that modify data (like cancelling an order) should ideally be POST requests.
-        // For simplicity in this example, we'll continue with GET, but note the best practice.
+       
         response.setContentType("text/html;charset=UTF-8");
         String orderIdParam = request.getParameter("id");
         if (orderIdParam != null && !orderIdParam.isEmpty()) { // Check for null and empty string

@@ -20,10 +20,10 @@ public class UserDao {
     public User userLogin(String email, String password) {
         User user = null;
         String query = "select * from users where email=? and password=?";
-        try (PreparedStatement pst = this.con.prepareStatement(query)) { // Use try-with-resources
+        try (PreparedStatement pst = this.con.prepareStatement(query)) {
             pst.setString(1, email);
             pst.setString(2, password);
-            try (ResultSet rs = pst.executeQuery()) { // Use try-with-resources for ResultSet
+            try (ResultSet rs = pst.executeQuery()) { 
                 if (rs.next()) {
                     user = new User();
                     user.setId(rs.getInt("id"));
@@ -41,7 +41,7 @@ public class UserDao {
     public boolean userRegister(User user) {
         boolean result = false;
         String query = "INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)";
-        try (PreparedStatement pst = this.con.prepareStatement(query)) { // Use try-with-resources
+        try (PreparedStatement pst = this.con.prepareStatement(query)) { 
             pst.setString(1, user.getName());
             pst.setString(2, user.getEmail());
             pst.setString(3, user.getPhone());

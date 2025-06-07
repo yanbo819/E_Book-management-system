@@ -46,13 +46,13 @@ public class QuantityIncDecServlet extends HttpServlet {
                             LOGGER.log(Level.INFO, "Increased quantity for cart item ID: {0}", id);
                         } else if (action.equals("dec")) {
                             int quantity = c.getQuantity();
-                            if (quantity > 1) { // Prevent quantity from going below 1
+                            if (quantity > 1) { 
                                 quantity--;
                                 c.setQuantity(quantity);
                                 LOGGER.log(Level.INFO, "Decreased quantity for cart item ID: {0}", id);
                             }
                         }
-                        break; // Found the item, no need to continue iterating
+                        break; 
                     }
                 }
             }
@@ -61,6 +61,6 @@ public class QuantityIncDecServlet extends HttpServlet {
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "Unexpected error in QuantityIncDecServlet", e);
         }
-        response.sendRedirect("cart.jsp"); // Always redirect back to cart.jsp
+        response.sendRedirect("cart.jsp");
     }
 }

@@ -1,7 +1,7 @@
 package cn_zjnu.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList; // Keep for now as the original uses it for direct output
+import java.util.ArrayList; 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

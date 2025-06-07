@@ -26,8 +26,8 @@ public class OrderNowServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // This method should ideally be doPost for actions that modify data.
-        doPost(request, response); // Delegate to doPost for consistency in this example.
+        
+        doPost(request, response);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class OrderNowServlet extends HttpServlet {
                 int productQuantity = Integer.parseInt(productQuantityParam);
 
                 if (productQuantity <= 0) {
-                    productQuantity = 1; // Default to 1 if quantity is invalid
+                    productQuantity = 1;
                     LOGGER.log(Level.INFO, "Invalid quantity provided, defaulting to 1 for product ID: {0}", productId);
                 }
 
@@ -67,11 +67,11 @@ public class OrderNowServlet extends HttpServlet {
                 boolean result = orderDao.insertOrder(orderModel);
 
                 if (result) {
-                    // Remove the ordered item from the cart if it was in the cart
+                    
                     @SuppressWarnings("unchecked")
                     ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
                     if (cart_list != null) {
-                        cart_list.removeIf(c -> c.getId() == productId); // Java 8+ way to remove
+                        cart_list.removeIf(c -> c.getId() == productId); 
                         request.getSession().setAttribute("cart-list", cart_list);
                     }
                     response.sendRedirect("orders.jsp?status=order_success");

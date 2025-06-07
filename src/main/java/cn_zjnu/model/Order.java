@@ -67,7 +67,7 @@ public class Order extends Books { // Extends Book now
 
     @Override
     public String toString() {
-        // You might want to include Book details in the toString as well if inherited data is relevant
+        
         return "Order [orderId=" + orderId + ", uid=" + uid + ", quantity=" + quantity + ", date=" + date
                 + ", Book Details: " + super.toString() + "]";
     }

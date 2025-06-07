@@ -11,7 +11,7 @@
         OrderDao orderDao = new OrderDao(DbCon.getConnection());
         orders = orderDao.getUserOrders(auth.getId());
     } else {
-        response.sendRedirect("login.jsp"); // Redirect if not logged in
+        response.sendRedirect("login.jsp");
         return;
     }
 %>

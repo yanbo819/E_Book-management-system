@@ -30,8 +30,8 @@ public class RemoveFromCartServlet extends HttpServlet {
                 ArrayList<Cart> cart_list = (ArrayList<Cart>) request.getSession().getAttribute("cart-list");
 
                 if (cart_list != null) {
-                    // Use Iterator for safe removal during iteration or stream for concise code
-                    boolean removed = cart_list.removeIf(c -> c.getId() == id); // Java 8+ way to remove
+                  
+                    boolean removed = cart_list.removeIf(c -> c.getId() == id); 
                     if (removed) {
                         LOGGER.log(Level.INFO, "Removed item ID: {0} from cart.", id);
                     } else {
@@ -48,6 +48,6 @@ public class RemoveFromCartServlet extends HttpServlet {
         } else {
             LOGGER.log(Level.WARNING, "Missing product ID for remove-from-cart request.");
         }
-        response.sendRedirect("cart.jsp"); // Always redirect back to cart.jsp
+        response.sendRedirect("cart.jsp"); 
     }
 }

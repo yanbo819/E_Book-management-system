@@ -1,16 +1,16 @@
 package cn_zjnu.model;
 
-public class Books { // Renamed from Books
+public class Books { 
     private int id;
     private String name;
     private String category;
     private Double price;
     private String image;
 
-    public Books() { // Constructor name updated
+    public Books() { 
     }
 
-    public Books(int id, String name, String category, Double price, String image) { // Constructor name updated
+    public Books(int id, String name, String category, Double price, String image) { 
         super();
         this.id = id;
         this.name = name;
@@ -62,6 +62,6 @@ public class Books { // Renamed from Books
     @Override
     public String toString() {
         return "Book [id=" + id + ", name=" + name + ", category=" + category + ", price=" + price + ", image="
-                + image + "]"; // Updated toString()
+                + image + "]"; 
     }
 }

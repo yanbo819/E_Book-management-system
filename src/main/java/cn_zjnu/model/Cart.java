@@ -1,6 +1,6 @@
 package cn_zjnu.model;
 
-public class Cart extends Books { // Extends Book now
+public class Cart extends Books { 
     private int quantity;
 
     public Cart() {

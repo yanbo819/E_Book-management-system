@@ -19,11 +19,10 @@ public class OrderDao {
         this.con = con;
     }
 
-    // This method inserts an order into the database
     public boolean insertOrder(Order model) {
         boolean result = false;
         String query = "insert into orders (p_id, u_id, o_quantity, o_date) values(?,?,?,?)";
-        try (PreparedStatement pst = this.con.prepareStatement(query)) { // Use try-with-resources
+        try (PreparedStatement pst = this.con.prepareStatement(query)) { 
             pst.setInt(1, model.getId());
             pst.setInt(2, model.getUid());
             pst.setInt(3, model.getQuantity());
@@ -37,7 +36,6 @@ public class OrderDao {
         }
         return result;
     }
-
     public List<Order> getUserOrders(int userId) {
         List<Order> list = new ArrayList<>();
         String query = "select o.o_id, o.p_id, o.u_id, o.o_quantity, o.o_date, p.name, p.category, p.price " +
@@ -66,11 +64,10 @@ public class OrderDao {
         return list;
     }
 
-    // New method to cancel an order
-    public boolean cancelOrder(int id) { // Changed return type to boolean to indicate success
+    public boolean cancelOrder(int id) { 
         boolean result = false;
         String query = "delete from orders where o_id=?";
-        try (PreparedStatement pst = this.con.prepareStatement(query)) { // Use try-with-resources
+        try (PreparedStatement pst = this.con.prepareStatement(query)) { 
             pst.setInt(1, id);
             int rowsAffected = pst.executeUpdate();
             if (rowsAffected > 0) {

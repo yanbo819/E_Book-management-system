@@ -3,17 +3,17 @@ package cn_zjnu.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException; // Import SQLException explicitly
+import java.sql.SQLException; 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level; // For logging, using java.util.logging for simplicity
+import java.util.logging.Level; 
 import java.util.logging.Logger;
 
 import cn_zjnu.model.Books;
 import cn_zjnu.model.Cart;
 
 public class BooksDao {
-    private static final Logger LOGGER = Logger.getLogger(BooksDao.class.getName()); // Logger instance
+    private static final Logger LOGGER = Logger.getLogger(BooksDao.class.getName());
     private final Connection con;
     private String query;
     private PreparedStatement pst;
@@ -23,10 +23,10 @@ public class BooksDao {
         this.con = con;
     }
 
-    public List<Books> getAllBooks() { // Renamed from getAllProducts
+    public List<Books> getAllBooks() { 
         List<Books> books = new ArrayList<>();
         try {
-            query = "select * from products"; // Assuming 'products' table stores books
+            query = "select * from products"; 
             pst = this.con.prepareStatement(query);
             rs = pst.executeQuery();
             while (rs.next()) {
@@ -38,20 +38,20 @@ public class BooksDao {
                 row.setImage(rs.getString("image"));
                 books.add(row);
             }
-        } catch (SQLException e) { // Catch specific SQLException
-            LOGGER.log(Level.SEVERE, "Error fetching all books: " + e.getMessage(), e); // Log the exception
+        } catch (SQLException e) { 
+            LOGGER.log(Level.SEVERE, "Error fetching all books: " + e.getMessage(), e); 
         } finally {
-            closeResources(pst, rs); // Close resources in a finally block
+            closeResources(pst, rs); 
         }
         return books;
     }
 
-    public List<Cart> getCartBooks(ArrayList<Cart> cartList) { // Renamed from getCartProducts
+    public List<Cart> getCartBooks(ArrayList<Cart> cartList) { 
         List<Cart> books = new ArrayList<>();
         try {
-            if (cartList != null && !cartList.isEmpty()) { // Add null check for cartList
+            if (cartList != null && !cartList.isEmpty()) { 
                 for (Cart item : cartList) {
-                    query = "select * from products where id=?"; // Assuming 'products' table stores books
+                    query = "select * from products where id=?";
                     pst = this.con.prepareStatement(query);
                     pst.setInt(1, item.getId());
                     rs = pst.executeQuery();
@@ -69,7 +69,7 @@ public class BooksDao {
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error fetching cart books: " + e.getMessage(), e);
         } finally {
-            closeResources(pst, rs); // Close resources in a finally block
+            closeResources(pst, rs); 
         }
         return books;
     }
@@ -77,9 +77,9 @@ public class BooksDao {
     public double getTotalCartPrice(ArrayList<Cart> cartList) {
         double sum = 0;
         try {
-            if (cartList != null && !cartList.isEmpty()) { // Add null check for cartList
+            if (cartList != null && !cartList.isEmpty()) { 
                 for (Cart item : cartList) {
-                    query = "select price from products where id=?"; // Assuming 'products' table stores books
+                    query = "select price from products where id=?"; 
                     pst = this.con.prepareStatement(query);
                     pst.setInt(1, item.getId());
                     rs = pst.executeQuery();
@@ -91,12 +91,12 @@ public class BooksDao {
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error calculating total cart price: " + e.getMessage(), e);
         } finally {
-            closeResources(pst, rs); // Close resources in a finally block
+            closeResources(pst, rs); 
         }
         return sum;
     }
 
-    // Helper method to close ResultSet and PreparedStatement
+    
     private void closeResources(PreparedStatement pst, ResultSet rs) {
         try {
             if (rs != null) rs.close();

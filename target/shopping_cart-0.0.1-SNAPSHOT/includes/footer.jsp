@@ -70,20 +70,18 @@
             let quantity = parseInt(input.value);
             if (quantity > 1) {
                 input.value = quantity - 1;
-                // You would typically send an AJAX request here to update the quantity in the session/database
-                // window.location.href = 'quantity-inc-dec?action=dec&id=' + button.dataset.productId;
+ 
             }
         });
     });
 
-    // Handle active nav link
     const currentPath = window.location.pathname;
     const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1);
     document.querySelectorAll('.nav-link').forEach(link => {
         if (link.getAttribute('href') === fileName) {
             link.classList.add('active');
         } else if (fileName === '' && link.getAttribute('href') === 'index.jsp') {
-            // Handle root path / for index.jsp
+    
             link.classList.add('active');
         }
     });
