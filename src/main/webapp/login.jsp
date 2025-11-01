@@ -7,6 +7,7 @@
     }
 %>
 <jsp:include page="includes/head.jsp"></jsp:include>
+<jsp:include page="includes/navbar.jsp"></jsp:include>
 
 <div class="container d-flex align-items-center justify-content-center">
     <section id="login-page">

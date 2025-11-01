@@ -5,6 +5,7 @@ cn_zjnu/servlet/OrderNowServlet.class
 cn_zjnu/servlet/CancelOrderServlet.class
 cn_zjnu/servlet/LogoutServlet.class
 cn_zjnu/servlet/QuantityIncDecServlet.class
+cn_zjnu/servlet/SearchServlet.class
 cn_zjnu/servlet/CheckOutServlet.class
 cn_zjnu/model/Books.class
 cn_zjnu/conncation/DbCon.class

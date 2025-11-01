@@ -97,6 +97,33 @@ public class BooksDao {
         return sum;
     }
 
+    public List<Books> searchBooks(String searchQuery) {
+        List<Books> books = new ArrayList<>();
+        try {
+            query = "SELECT * FROM products WHERE name LIKE ? OR category LIKE ? ORDER BY name";
+            pst = this.con.prepareStatement(query);
+            String searchPattern = "%" + searchQuery + "%";
+            pst.setString(1, searchPattern);
+            pst.setString(2, searchPattern);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                Books row = new Books();
+                row.setId(rs.getInt("id"));
+                row.setName(rs.getString("name"));
+                row.setCategory(rs.getString("category"));
+                row.setPrice(rs.getDouble("price"));
+                row.setImage(rs.getString("image"));
+                books.add(row);
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error searching books: " + e.getMessage(), e);
+        } finally {
+            closeResources(pst, rs);
+        }
+        return books;
+    }
+
     
     private void closeResources(PreparedStatement pst, ResultSet rs) {
         try {

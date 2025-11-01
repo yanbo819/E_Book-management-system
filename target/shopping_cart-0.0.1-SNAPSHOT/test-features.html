@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Book Store Feature Test</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/theme-ai.js" defer></script>
+</head>
+<body>
+    <!-- Test Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-book-open"></i>yanbo E-Book</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Search Form -->
+                <form class="search-form me-auto" action="#" method="get">
+                    <input type="text" class="search-input" name="query" placeholder="Search books...">
+                    <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+                </form>
+                
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <!-- Theme Toggle -->
+                    <li class="nav-item me-3">
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-sun" id="themeIcon"></i>
+                            <span id="themeText">Light</span>
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart me-1"></i>Cart <span class="badge bg-primary">3</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user-circle me-1"></i>Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Test Content -->
+    <div class="container">
+        <section id="test-page" class="mb-5">
+            <div class="page-header">
+                <h2>Feature Test Page</h2>
+                <p class="lead">Test the new theme toggle, search form, and AI assistant</p>
+            </div>
+            
+            <!-- Test Alert -->
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                <i class="fas fa-info-circle me-2"></i>
+                This is a test alert to verify theme compatibility.
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            
+            <!-- Test Cards -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://via.placeholder.com/300x240" class="card-img-top" alt="Test Book">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">Test Book Title</h5>
+                            <h6 class="price">$19.99</h6>
+                            <h6 class="category">Fiction</h6>
+                            <div class="mt-auto d-flex justify-content-between">
+                                <button class="btn btn-dark btn-sm">Add to Cart</button>
+                                <button class="btn btn-primary btn-sm">Buy Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Test Instructions</h5>
+                            <ul>
+                                <li><strong>Theme Toggle:</strong> Click the sun/moon button in the navbar</li>
+                                <li><strong>Search:</strong> Try typing in the search box</li>
+                                <li><strong>AI Assistant:</strong> Look for the robot icon in the bottom-right corner</li>
+                                <li><strong>Responsiveness:</strong> Resize your browser window</li>
+                            </ul>
+                            
+                            <h6 class="mt-4">AI Assistant Test Questions:</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-secondary">"how to search"</span>
+                                <span class="badge bg-secondary">"switch theme"</span>
+                                <span class="badge bg-secondary">"help with cart"</span>
+                                <span class="badge bg-secondary">"how to login"</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h5>yanbo E-Book Store</h5>
+                    <p>Feature test page for theme toggle, search, and AI assistant functionality.</p>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>Test Features</h5>
+                    <p>✅ Light/Dark Theme Toggle</p>
+                    <p>✅ Search Functionality</p> 
+                    <p>✅ AI Assistant Chat</p>
+                    <p>✅ Responsive Design</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 yanbo E-Book Store. Feature Test Page.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

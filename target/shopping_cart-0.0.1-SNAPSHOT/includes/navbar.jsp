@@ -16,7 +16,20 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <!-- Search Form -->
+            <form class="search-form me-auto" action="SearchServlet" method="get">
+                <input type="text" class="search-input" name="query" placeholder="Search books..." value="<%= request.getParameter("query") != null ? request.getParameter("query") : "" %>">
+                <button type="submit" class="search-btn"><i class="fas fa-search"></i></button>
+            </form>
+            
+            <ul class="navbar-nav mb-2 mb-lg-0">
+                <!-- Theme Toggle -->
+                <li class="nav-item me-3">
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-sun" id="themeIcon"></i>
+                        <span id="themeText">Light</span>
+                    </button>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link <%= "index.jsp".equals(request.getRequestURI().substring(request.getRequestURI().lastIndexOf('/') + 1)) ? "active" : "" %>" aria-current="page" href="index.jsp"><i class="fas fa-home me-1"></i>Home</a>
                 </li>

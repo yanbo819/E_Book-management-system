@@ -3,23 +3,57 @@
     --primary-light: #8580ff;
     --secondary-color: #4FC3F7; /* Soft blue */
     --accent-color: #FF6584; /* Energetic coral */
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Light theme variables (default) */
+:root {
     --dark-color: #2A2D3E; /* Deep navy */
     --light-color: #F7F9FC; /* Off-white */
     --glass-bg: rgba(255, 255, 255, 0.92); /* Enhanced glass effect */
     --dark-glass-bg: rgba(42, 45, 62, 0.15); /* Darker glass */
     --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --text-color: #2A2D3E;
+    --text-muted: #6c757d;
+    --bg-color: linear-gradient(135deg, #F7F9FC 0%, #eef1f7 100%);
+    --navbar-bg: rgba(255, 255, 255, 0.92);
+    --card-bg: rgba(255, 255, 255, 0.92);
+    --form-bg: rgba(255, 255, 255, 0.92);
+    --table-bg: rgba(255, 255, 255, 0.92);
+    --footer-bg: #2A2D3E;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --hover-bg: rgba(108, 99, 255, 0.05);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --dark-color: #F7F9FC; /* Light text for dark theme */
+    --light-color: #1a1d29; /* Dark background */
+    --glass-bg: rgba(26, 29, 41, 0.92); /* Dark glass effect */
+    --dark-glass-bg: rgba(247, 249, 252, 0.15); /* Light glass for dark theme */
+    --card-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    --text-color: #F7F9FC;
+    --text-muted: #b8bcc8;
+    --bg-color: linear-gradient(135deg, #1a1d29 0%, #252836 100%);
+    --navbar-bg: rgba(26, 29, 41, 0.92);
+    --card-bg: rgba(42, 45, 62, 0.9);
+    --form-bg: rgba(42, 45, 62, 0.9);
+    --table-bg: rgba(42, 45, 62, 0.9);
+    --footer-bg: #0f1015;
+    --border-color: rgba(255, 255, 255, 0.2);
+    --hover-bg: rgba(108, 99, 255, 0.1);
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, var(--light-color) 0%, #eef1f7 100%);
+    background: var(--bg-color);
     min-height: 100vh; /* Ensure body takes at least full viewport height */
     display: flex; /* Enable flexbox */
     flex-direction: column; /* Arrange children vertically */
     position: relative;
     overflow-x: hidden; /* Prevent horizontal scroll from animated background */
-    color: var(--dark-color);
+    color: var(--text-color);
+    transition: var(--transition);
     /* Remove padding-bottom from body as footer will push content up */
     /* padding-bottom: 100px; */ 
 }
@@ -27,11 +61,8 @@ body {
 /* Enhanced animated background */
 body::before {
     content: "";
-    position: fixed; /* Keep it fixed so it doesn't scroll with content */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    inset: 0;
     background:
         radial-gradient(circle at 15% 25%, rgba(107, 99, 255, 0.1) 0px, transparent 40%),
         radial-gradient(circle at 85% 75%, rgba(255, 101, 132, 0.1) 0px, transparent 40%);
@@ -52,11 +83,11 @@ main {
 
 /* Modern Glassmorphism Navbar */
 .navbar {
-    background: var(--glass-bg) !important;
+    background: var(--navbar-bg) !important;
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--border-color);
     padding: 12px 0;
     transition: var(--transition);
     position: sticky;
@@ -80,7 +111,7 @@ main {
 
 .nav-link {
     font-weight: 500;
-    color: var(--dark-color) !important;
+    color: var(--text-color) !important;
     margin: 0 10px;
     padding: 8px 0 !important;
     position: relative;
@@ -108,13 +139,13 @@ main {
     border: none;
     border-radius: 18px;
     overflow: hidden;
-    background: var(--glass-bg);
+    background: var(--card-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: var(--card-shadow);
     transition: var(--transition);
     margin-bottom: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--border-color);
 }
 
 .card:hover {
@@ -134,7 +165,7 @@ main {
 
 .card-title {
     font-weight: 600;
-    color: var(--dark-color);
+    color: var(--text-color);
     margin-bottom: 12px;
     font-size: 1.25rem;
     line-height: 1.4;
@@ -149,7 +180,7 @@ main {
 
 .card .category {
     font-size: 0.9rem;
-    color: #6c757d;
+    color: var(--text-muted);
     margin-bottom: 15px;
     font-weight: 500;
 }
@@ -503,16 +534,423 @@ main {
     border: 1px solid #f5c6cb;
 }
 
+/* Bootstrap Alert Theming */
+.alert {
+    border-radius: 14px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-color);
+    backdrop-filter: blur(12px);
+}
+
+.alert-danger {
+    background: rgba(255, 101, 132, 0.1);
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .alert-danger {
+    background: rgba(255, 101, 132, 0.2);
+    color: #ff9db3;
+}
+
+.alert-warning {
+    background: rgba(255, 193, 7, 0.1);
+    border-color: #ffc107;
+    color: #856404;
+}
+
+[data-theme="dark"] .alert-warning {
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffd43b;
+}
+
+.btn-close {
+    filter: var(--bs-btn-close-filter, none);
+}
+
+[data-theme="dark"] .btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.theme-toggle:hover {
+    background: var(--hover-bg);
+    transform: translateY(-2px);
+}
+
+.theme-toggle i {
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+/* Search Form */
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 20px;
+}
+
+.search-input {
+    background: var(--glass-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    padding: 8px 16px;
+    color: var(--text-color);
+    transition: var(--transition);
+    width: 200px;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+    background: var(--card-bg);
+}
+
+.search-input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-btn {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.search-btn:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* AI Chat Interface */
+.ai-chat-toggle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4);
+    transition: var(--transition);
+    z-index: 1000;
+}
+
+.ai-chat-toggle:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(108, 99, 255, 0.5);
+}
+
+.ai-chat-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    width: 350px;
+    height: 500px;
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.ai-chat-header {
+    padding: 20px;
+    background: linear-gradient(45deg, var(--primary-color), var(--primary-light));
+    color: white;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ai-chat-header h4 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ai-chat-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.ai-chat-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.ai-chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ai-message {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.ai-message.user {
+    align-self: flex-end;
+    background: var(--primary-color);
+    color: white;
+}
+
+.ai-message.bot {
+    align-self: flex-start;
+    background: var(--hover-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.ai-chat-input-container {
+    padding: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 10px;
+}
+
+.ai-chat-input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    background: var(--glass-bg);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.ai-chat-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.15);
+}
+
+.ai-chat-send {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.ai-chat-send:hover {
+    background: var(--primary-light);
+}
+
+/* Update other theme-dependent elements */
+.table-container {
+    background: var(--table-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    padding: 16px 24px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-color);
+    text-align: center;
+    font-weight: 500;
+}
+
+.table tbody tr:hover {
+    background: var(--hover-bg);
+}
+
+.form-container {
+    width: 100%;
+    max-width: 480px;
+    background: var(--form-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    margin: 50px auto;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.form-control {
+    border-radius: 14px;
+    padding: 14px 20px;
+    border: 1px solid var(--border-color);
+    background: var(--glass-bg);
+    transition: var(--transition);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.15);
+    background: var(--card-bg);
+}
+
+.total-price-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 30px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+}
+
+.total-price-section h3 {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.page-header h2 {
+    font-weight: 700;
+    color: var(--text-color);
+    font-size: 2.5rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.footer {
+    background: var(--footer-bg);
+    color: rgba(255, 255, 255, 0.85);
+    padding: 60px 0 30px;
+    width: 100%;
+    margin-top: auto;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--border-color);
+    margin: 40px auto;
+    max-width: 700px;
+}
+
+.empty-state h3 {
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.empty-state p {
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto 25px;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 992px) {
     .navbar-collapse {
-        background: var(--glass-bg);
+        background: var(--navbar-bg);
         backdrop-filter: blur(16px);
         border-radius: 18px;
         padding: 20px;
         margin-top: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.7);
+        border: 1px solid var(--border-color);
+    }
+    
+    .search-form {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .search-input {
+        width: 100%;
+    }
+    
+    .ai-chat-container {
+        width: 300px;
+        height: 400px;
+        right: 20px;
+        bottom: 90px;
+    }
+    
+    .ai-chat-toggle {
+        width: 50px;
+        height: 50px;
+        right: 20px;
+        bottom: 20px;
     }
 
     .card {
@@ -603,5 +1041,31 @@ main {
     .cart-table-actions {
         flex-direction: column;
         gap: 8px;
+    }
+    
+    .theme-toggle {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .search-input {
+        width: calc(100% - 50px);
+        font-size: 14px;
+    }
+    
+    .ai-chat-container {
+        width: calc(100vw - 20px);
+        height: 70vh;
+        right: 10px;
+        bottom: 80px;
+        left: 10px;
+    }
+    
+    .ai-chat-toggle {
+        width: 45px;
+        height: 45px;
+        right: 15px;
+        bottom: 15px;
+        font-size: 20px;
     }
 }

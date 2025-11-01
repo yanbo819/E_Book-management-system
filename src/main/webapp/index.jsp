@@ -9,9 +9,19 @@
         request.setAttribute("cart_list", cart_list);
     }
     
-    // Fetch all books
-    BooksDao bdao = new BooksDao(DbCon.getConnection());
-    List<Books> list = bdao.getAllBooks();
+    // Check if this is a search request
+    boolean isSearch = "true".equals(request.getParameter("search"));
+    List<Books> list;
+    String searchQuery = "";
+    
+    if (isSearch && session.getAttribute("searchResults") != null) {
+        list = (List<Books>) session.getAttribute("searchResults");
+        searchQuery = (String) session.getAttribute("searchQuery");
+    } else {
+        // Fetch all books
+        BooksDao bdao = new BooksDao(DbCon.getConnection());
+        list = bdao.getAllBooks();
+    }
 %>
 <jsp:include page="includes/head.jsp"></jsp:include>
 <jsp:include page="includes/navbar.jsp"></jsp:include>
@@ -19,9 +29,43 @@
 <div class="container">
     <section id="home-page" class="mb-5">
         <div class="page-header">
-            <h2>Discover Your Next Read</h2>
-            <p class="lead">Explore our curated collection of bestsellers and new releases</p>
+            <% if (isSearch && !searchQuery.isEmpty()) { %>
+                <h2>Search Results for "<%= searchQuery %>"</h2>
+                <p class="lead">Found <%= list.size() %> book(s) matching your search</p>
+                <a href="index.jsp" class="btn btn-outline-primary mt-2">
+                    <i class="fas fa-arrow-left me-1"></i>Back to All Books
+                </a>
+            <% } else { %>
+                <h2>Discover Your Next Read</h2>
+                <p class="lead">Explore our curated collection of bestsellers and new releases</p>
+            <% } %>
         </div>
+        
+        <!-- Error Messages -->
+        <% 
+            String errorMessage = (String) session.getAttribute("errorMessage");
+            String errorType = request.getParameter("error");
+            if (errorMessage != null) {
+        %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                <%= errorMessage %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% session.removeAttribute("errorMessage"); %>
+        <% } else if (errorType != null) { %>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <i class="fas fa-info-circle me-2"></i>
+                <% if ("search".equals(errorType)) { %>
+                    Search temporarily unavailable. Please try again later.
+                <% } else if ("db".equals(errorType)) { %>
+                    Database connection issue. Please refresh the page.
+                <% } else { %>
+                    An error occurred. Please try again.
+                <% } %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% } %>
         
         <div class="row">
             <%
@@ -48,9 +92,15 @@
             %>
             <div class="col-12">
                 <div class="empty-state">
-                    <i class="fas fa-book-reader"></i>
-                    <h3>No Books Available</h3>
-                    <p>It looks like our shelves are empty right now. Please check back later!</p>
+                    <i class="fas fa-search"></i>
+                    <% if (isSearch) { %>
+                        <h3>No Books Found</h3>
+                        <p>We couldn't find any books matching "<%= searchQuery %>". Try different keywords or browse all books.</p>
+                        <a href="index.jsp" class="btn btn-primary">Browse All Books</a>
+                    <% } else { %>
+                        <h3>No Books Available</h3>
+                        <p>It looks like our shelves are empty right now. Please check back later!</p>
+                    <% } %>
                 </div>
             </div>
             <%

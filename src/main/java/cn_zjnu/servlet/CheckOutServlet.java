@@ -13,11 +13,11 @@ import cn_zjnu.dao.OrderDao;
 import cn_zjnu.model.Cart;
 import cn_zjnu.model.Order;
 import cn_zjnu.model.User;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/CheckOutServlet")
 public class CheckOutServlet extends HttpServlet {
