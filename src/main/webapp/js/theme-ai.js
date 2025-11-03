@@ -23,14 +23,16 @@ document.addEventListener('DOMContentLoaded', function() {
         if (theme === 'dark') {
             body.setAttribute('data-theme', 'dark');
             if (themeIcon && themeText) {
+                const darkLabel = themeText.dataset.dark || 'Dark';
                 themeIcon.className = 'fas fa-moon';
-                themeText.textContent = 'Dark';
+                themeText.textContent = darkLabel;
             }
         } else {
             body.removeAttribute('data-theme');
             if (themeIcon && themeText) {
+                const lightLabel = themeText.dataset.light || 'Light';
                 themeIcon.className = 'fas fa-sun';
-                themeText.textContent = 'Light';
+                themeText.textContent = lightLabel;
             }
         }
         localStorage.setItem('theme', theme);

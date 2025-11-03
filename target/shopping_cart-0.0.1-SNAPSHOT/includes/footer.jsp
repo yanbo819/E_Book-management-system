@@ -1,38 +1,41 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<fmt:bundle basename="messages">
 <footer class="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mb-4">
-                <h5>About yanbo E-Book</h5>
-                <p>Your premier destination for digital reading. Discover thousands of books across all genres at competitive prices.</p>
+                <h5><fmt:message key="footer.about.title"/></h5>
+                <p><fmt:message key="footer.about.text"/></p>
             </div>
             <div class="col-md-2 mb-4">
-                <h5>Quick Links</h5>
-                <p><a href="index.jsp">Home</a></p>
-                <p><a href="#">New Releases</a></p>
-                <p><a href="#">Bestsellers</a></p>
-                <p><a href="#">Categories</a></p>
+                <h5><fmt:message key="footer.links.title"/></h5>
+                <p><a href="index.jsp"><fmt:message key="footer.link.home"/></a></p>
+                <p><a href="#"><fmt:message key="footer.link.new"/></a></p>
+                <p><a href="#"><fmt:message key="footer.link.best"/></a></p>
+                <p><a href="#"><fmt:message key="footer.link.categories"/></a></p>
             </div>
             <div class="col-md-2 mb-4">
-                <h5>Help</h5>
-                <p><a href="#">My Account</a></p>
-                <p><a href="#">Order Tracking</a></p>
-                <p><a href="#">FAQ</a></p>
-                <p><a href="#">Contact Us</a></p>
+                <h5><fmt:message key="footer.help.title"/></h5>
+                <p><a href="#"><fmt:message key="footer.help.account"/></a></p>
+                <p><a href="#"><fmt:message key="footer.help.tracking"/></a></p>
+                <p><a href="#"><fmt:message key="footer.help.faq"/></a></p>
+                <p><a href="#"><fmt:message key="footer.help.contact"/></a></p>
             </div>
             <div class="col-md-4 mb-4">
-                <h5>Newsletter</h5>
-                <p>Subscribe to get special offers, free giveaways, and new book alerts.</p>
+                <h5><fmt:message key="footer.news.title"/></h5>
+                <p><fmt:message key="footer.news.text"/></p>
                 <div class="input-group mt-3">
-                    <input type="email" class="form-control" placeholder="Your email address" aria-label="Your email address">
-                    <button class="btn btn-primary" type="button">Subscribe</button>
+                    <input type="email" class="form-control" placeholder="<fmt:message key='footer.news.placeholder'/>" aria-label="Your email address">
+                    <button class="btn btn-primary" type="button"><fmt:message key="footer.news.subscribe"/></button>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 yanbo E-Book Store. All rights reserved.</p>
+            <p><fmt:message key="footer.copy"><fmt:param value="2025"/></fmt:message></p>
         </div>
     </div>
 </footer>
+</fmt:bundle>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -51,27 +54,7 @@
         });
     });
     
-    document.querySelectorAll('.btn-incre').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const input = button.parentElement.querySelector('.form-control');
-            let quantity = parseInt(input.value);
-            input.value = quantity + 1;
-       
-        });
-    });
-    
-    document.querySelectorAll('.btn-decre').forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            const input = button.parentElement.querySelector('.form-control');
-            let quantity = parseInt(input.value);
-            if (quantity > 1) {
-                input.value = quantity - 1;
- 
-            }
-        });
-    });
+    // Remove JS interception on +/- so server-side quantity change works via links
 
     const currentPath = window.location.pathname;
     const fileName = currentPath.substring(currentPath.lastIndexOf('/') + 1);

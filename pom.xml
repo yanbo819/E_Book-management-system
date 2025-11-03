@@ -97,7 +97,7 @@
 				<version>9.4.53.v20231009</version>
 				<configuration>
 					<httpConnector>
-						<port>8082</port>
+						<port>8083</port>
 					</httpConnector>
 					<webAppConfig>
 						<contextPath>/</contextPath>

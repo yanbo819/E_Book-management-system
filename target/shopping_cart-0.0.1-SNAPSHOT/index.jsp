@@ -23,21 +23,25 @@
         list = bdao.getAllBooks();
     }
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="includes/head.jsp"></jsp:include>
 <jsp:include page="includes/navbar.jsp"></jsp:include>
+
+<fmt:bundle basename="messages">
 
 <div class="container">
     <section id="home-page" class="mb-5">
         <div class="page-header">
             <% if (isSearch && !searchQuery.isEmpty()) { %>
-                <h2>Search Results for "<%= searchQuery %>"</h2>
-                <p class="lead">Found <%= list.size() %> book(s) matching your search</p>
+                <h2><fmt:message key="search.header"><fmt:param value="<%= searchQuery %>"/></fmt:message></h2>
+                <p class="lead"><fmt:message key="search.count"><fmt:param value="<%= String.valueOf(list.size()) %>"/></fmt:message></p>
                 <a href="index.jsp" class="btn btn-outline-primary mt-2">
-                    <i class="fas fa-arrow-left me-1"></i>Back to All Books
+                    <i class="fas fa-arrow-left me-1"></i><fmt:message key="btn.backToAll"/>
                 </a>
             <% } else { %>
-                <h2>Discover Your Next Read</h2>
-                <p class="lead">Explore our curated collection of bestsellers and new releases</p>
+                <h2><fmt:message key="home.header"/></h2>
+                <p class="lead"><fmt:message key="home.sub"/></p>
             <% } %>
         </div>
         
@@ -57,11 +61,11 @@
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <i class="fas fa-info-circle me-2"></i>
                 <% if ("search".equals(errorType)) { %>
-                    Search temporarily unavailable. Please try again later.
+                    <fmt:message key="error.searchUnavailable"/>
                 <% } else if ("db".equals(errorType)) { %>
-                    Database connection issue. Please refresh the page.
+                    <fmt:message key="error.db"/>
                 <% } else { %>
-                    An error occurred. Please try again.
+                    <fmt:message key="error.generic"/>
                 <% } %>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -80,8 +84,8 @@
                         <h6 class="price">$<%= String.format("%.2f", b.getPrice()) %></h6>
                         <h6 class="category"><%= b.getCategory() %></h6>
                         <div class="mt-auto d-flex justify-content-between">
-                            <a href="AddToCartServlet?id=<%= b.getId() %>" class="btn btn-dark btn-sm">Add to Cart</a>
-                            <a href="OrderNowServlet?quantity=1&id=<%= b.getId() %>" class="btn btn-primary btn-sm">Buy Now</a>
+                            <a href="<%= request.getContextPath() %>/AddToCartServlet?id=<%= b.getId() %>" class="btn btn-dark btn-sm"><fmt:message key="btn.addToCart"/></a>
+                            <a href="<%= request.getContextPath() %>/OrderNowServlet?quantity=1&id=<%= b.getId() %>" class="btn btn-primary btn-sm"><fmt:message key="btn.buyNow"/></a>
                         </div>
                     </div>
                 </div>
@@ -94,12 +98,12 @@
                 <div class="empty-state">
                     <i class="fas fa-search"></i>
                     <% if (isSearch) { %>
-                        <h3>No Books Found</h3>
-                        <p>We couldn't find any books matching "<%= searchQuery %>". Try different keywords or browse all books.</p>
-                        <a href="index.jsp" class="btn btn-primary">Browse All Books</a>
+                        <h3><fmt:message key="empty.search.title"/></h3>
+                        <p><fmt:message key="empty.search.sub"><fmt:param value="<%= searchQuery %>"/></fmt:message></p>
+                        <a href="index.jsp" class="btn btn-primary"><fmt:message key="btn.browseBooks"/></a>
                     <% } else { %>
-                        <h3>No Books Available</h3>
-                        <p>It looks like our shelves are empty right now. Please check back later!</p>
+                        <h3><fmt:message key="empty.noBooks.title"/></h3>
+                        <p><fmt:message key="empty.noBooks.sub"/></p>
                     <% } %>
                 </div>
             </div>
@@ -111,3 +115,5 @@
 </div>
 
 <jsp:include page="includes/footer.jsp"></jsp:include>
+
+</fmt:bundle>

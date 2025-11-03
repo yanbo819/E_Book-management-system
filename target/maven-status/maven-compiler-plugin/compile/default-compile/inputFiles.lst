@@ -7,6 +7,7 @@
 /Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/dao/OrderDao.java
 /Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/dao/BooksDao.java
 /Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/servlet/RegisterServlet.java
+/Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/servlet/LanguageServlet.java
 /Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/servlet/CheckOutServlet.java
 /Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/servlet/SearchServlet.java
 /Users/yanbo/Desktop/Class files/third year/First semester/Individual Project/E_Book management system/src/main/java/cn_zjnu/servlet/OrderNowServlet.java

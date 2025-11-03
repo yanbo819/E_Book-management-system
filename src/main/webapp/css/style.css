@@ -573,6 +573,48 @@ main {
     filter: invert(1) grayscale(100%) brightness(200%);
 }
 
+/* Dark theme clarity improvements */
+[data-theme="dark"] .btn.btn-outline-primary {
+    color: #66b2ff;
+    border: 1px solid #66b2ff;
+}
+[data-theme="dark"] .btn.btn-outline-primary:hover {
+    background-color: #66b2ff;
+    color: #0b1320;
+}
+[data-theme="dark"] .btn.btn-outline-secondary {
+    color: #e2e6ea;
+    border: 1px solid #bfc5ca;
+}
+[data-theme="dark"] .btn.btn-outline-secondary:hover {
+    background-color: #bfc5ca;
+    color: #0b1320;
+}
+
+/* Modal readability in dark theme */
+[data-theme="dark"] .modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-body,
+[data-theme="dark"] .modal-footer {
+    border-color: var(--border-color);
+}
+[data-theme="dark"] .form-label,
+[data-theme="dark"] .form-text {
+    color: var(--text-muted);
+}
+[data-theme="dark"] .form-control {
+    background: var(--glass-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+}
+
 /* Theme Toggle Button */
 .theme-toggle {
     position: relative;
